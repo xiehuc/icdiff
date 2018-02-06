@@ -535,8 +535,8 @@ def set_cols_option(options):
     return options
 
 
-def validate_has_two_arguments(parser, args):
-    if len(args) != 2:
+def validate_has_3_arguments(parser, args):
+    if len(args) != 3:
         parser.print_help()
         sys.exit()
 
@@ -544,7 +544,7 @@ def validate_has_two_arguments(parser, args):
 def start():
     parser = create_option_parser()
     options, args = parser.parse_args()
-    validate_has_two_arguments(parser, args)
+    validate_has_3_arguments(parser, args)
     options = set_cols_option(options)
     diff(options, *args)
 
@@ -557,7 +557,7 @@ def codec_print(s, options):
         sys.stdout.write(s.encode(options.output_encoding))
 
 
-def diff(options, a, b):
+def diff(options, a, b, c):
     def print_meta(s):
         codec_print(simple_colorize(s, "magenta"), options)
 
@@ -565,6 +565,7 @@ def diff(options, a, b):
     # bash's process substitution (/dev/fd/N).
     is_a_file = not os.path.isdir(a)
     is_b_file = not os.path.isdir(b)
+    is_c_file = not os.path.isdir(c)
 
     if is_a_file and is_b_file:
         try:

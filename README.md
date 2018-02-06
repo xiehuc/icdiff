@@ -1,6 +1,14 @@
-# Icdiff
+# Ic3jdiff
 
-Improved colored diff
+Improved colored 3 way json diff
+
+Question: Developer often do regression test by  diff with online and offline
+json result. but some field was random, like id. if just use plain text diff,
+still makes a large output, unnecessary.
+
+Solve: using 3 way diff. offline-ip, online-ip, online-ip. first compare two
+online results, if some field differ, just ignore it. then compare offline and
+online result. since we have ignore changed field. we can solve the problem
 
 ![screenshot](http://www.jefftk.com/icdiff-css-demo.png)
 
